@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Happy 1st Anniversary, Naivedi ❤️</title>
+  <meta name="theme-color" content="#ff5fa2" />
+  <style>
+    :root{
+      --bg1:#0f1020; --bg2:#1a1038; --accent:#ff5fa2; --accent-2:#ffd166; --text:#ffffff;
+      --card:#16162a; --muted:#b9b9c9;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:linear-gradient(160deg,var(--bg1),var(--bg2));color:var(--text);}
+    .container{min-height:100%;display:flex;flex-direction:column;}
+
+    /* Header */
+    header{padding:18px 16px 8px;position:sticky;top:0;background:linear-gradient(160deg,rgba(15,16,32,.9),rgba(26,16,56,.7));backdrop-filter: blur(8px);z-index:10}
+    .title{display:flex;align-items:center;gap:10px}
+    .title h1{font-size:20px;margin:0;font-weight:800;letter-spacing:.3px}
+    .pill{font-size:12px;background:rgba(255,95,162,.15);padding:6px 10px;border-radius:999px;border:1px solid rgba(255,95,162,.35)}
+
+    /* Hero */
+    .hero{padding:22px 16px 4px;text-align:center}
+    .name{font-size:34px;line-height:1.1;margin:6px 0 2px;font-weight:900}
+    .nickname{color:var(--muted);font-size:14px;margin:0 0 14px}
+    .sub{font-size:14px;color:#f4f4f7;opacity:.9;margin:8px 0 0}
+
+    /* Countdown Card */
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px;margin:16px;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+    .count-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0}
+    .slot{background:rgba(255,255,255,.06);border-radius:14px;padding:10px 6px;border:1px solid rgba(255,255,255,.08)}
+    .num{font-size:20px;font-weight:800}
+    .label{font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:14px;border:none;font-weight:700;font-size:14px;color:#0b0b12;background:linear-gradient(90deg,var(--accent),#ffa2d0);box-shadow:0 6px 16px rgba(255,95,162,.35);cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.16);box-shadow:none}
+
+    /* Hidden reveal section */
+    .reveal{display:none;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:8px 0 2px}
+    .reveal h2{font-size:28px;line-height:1.15;margin:8px 0 0}
+    .type{font-size:16px;color:#ffe9f3;opacity:.95;min-height:24px}
+
+    /* Photo strip */
+    .strip{display:grid;grid-auto-flow:column;grid-auto-columns:70%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;margin:10px 0}
+    .ph{scroll-snap-align:center;aspect-ratio:3/4;border-radius:16px;background:#20223c;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+    .ph img{width:100%;height:100%;object-fit:cover;border-radius:16px;}
+    .ph::after{content:"";}
+
+    /* Love note */
+    .note{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px}
+    .note h3{margin:0 0 6px;font-size:18px}
+    .note p{margin:0;color:#f1f1f7;line-height:1.55}
+
+    /* Footer */
+    footer{padding:18px 14px 28px;color:var(--muted);text-align:center;font-size:12px}
+
+    /* Floating hearts */
+    .hearts{position:fixed;pointer-events:none;inset:0;overflow:hidden;z-index:0}
+    .heart{position:absolute;bottom:-40px;width:18px;height:18px;background:var(--accent);transform: rotate(45deg);animation: float 9s linear infinite;opacity:.75;}
+    .heart::before,.heart::after{content:"";position:absolute;width:18px;height:18px;background:var(--accent);border-radius:50%}
+    .heart::before{left:-9px}
+    .heart::after{top:-9px}
+    @keyframes float{0%{transform:translateY(0) rotate(45deg)}100%{transform:translateY(-120vh) rotate(45deg)}}
+
+    /* Confetti canvas */
+    #confetti{position:fixed;inset:0;pointer-events:none;z-index:20}
+
+    /* Small helpers */
+    .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+  <div class="hearts" aria-hidden="true"></div>
+
+  <div class="container">
+    <header>
+      <div class="title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-6.716-4.297-9.193-7.55C1.146 10.88 2.07 7.5 4.81 6.2 7.55 4.9 9.9 6.6 12 9c2.1-2.4 4.45-4.1 7.19-2.8 2.74 1.3 3.67 4.68 1.99 7.25C18.716 16.703 12 21 12 21z" fill="url(#g)"/><defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#ff5fa2"/><stop offset="1" stop-color="#ffa2d0"/></linearGradient></defs></svg>
+        <h1>For my Vedi 💖</h1>
+        <span class="pill">1 year of us</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="name">Happy 1st Anniversary,<br/>Vedi</div>
+      <div class="nickname">(a.k.a. my Vedi)</div>
+      <p class="sub">A tiny website from Dhruv — crafted just for the moment the clock hits <strong>12:00 AM</strong> 🕛</p>
+    </section>
+
+    <section class="card" id="countdownCard">
+      <div class="muted" style="margin-bottom:6px">Countdown to 12:00 AM</div>
+      <div class="count-grid" role="timer" aria-live="polite">
+        <div class="slot"><div class="num" id="d">0</div><div class="label">days</div></div>
+        <div class="slot"><div class="num" id="h">0</div><div class="label">hours</div></div>
+        <div class="slot"><div class="num" id="m">0</div><div class="label">mins</div></div>
+        <div class="slot"><div class="num" id="s">0</div><div class="label">secs</div></div>
+      </div>
+      <div class="row">
+        <!-- <button class="btn" id="testReveal">Preview message</button> -->
+        <button class="btn secondary" id="muteBtn" aria-pressed="false">Sound on</button>
+      </div>
+    </section>
+
+    <section class="card reveal" id="reveal">
+      <h2>We made it, love! 🥂</h2>
+      <div class="type" id="type"></div>
+      <div class="strip" aria-label="memories">
+        <div class="ph">
+          <img src="hand.jpg" alt="Our hands">
+        </div>
+        <div class="ph">
+          <img src="together.jpg" alt="Us together">
+        </div>
+        <div class="ph"></div>
+      </div>
+      <div class="note">
+        <h3>My note to you, Vedi</h3>
+        <p id="noteText">First of all, I love youuuuuuuuuuuuuuuu soooooo sooooooooooooooooooooosssssoooooooooooooooo much Vedi 😘❤️
+
+Tumne kaise mujhe 1 saal jhel liya I don’t know 🤯😂, thanks to laptop jiski wajah se main teri nazar mein toh aaya 💻👀. It’s like a dream come true that library mein tujhe dekhna 📚✨, Aayushi se tera “chii” bolna sunna 😆, fir tera matlab haldi ka, tere phone se mujhe follow karna 📱💕, woh KBC questions 🎤🤣 aur pehle hi phone call pe Aayushi ki bharai karna 😂. That first video call jab main Changa tha 📞💖, to our first kiss at Changa 💋🌹. Like your everything made me fall for you, my cutie 🥰.
+
+I know bohot baar humne ek dusre ko jhela bhi hai 😅, but the best thing about you — tumne kabhi saath nahi chhoda 🙌❤️. Aur please kabhi chhodna bhi mat 🙏💞. I love you soooo much 🥺💖.
+
+Ab bohot nahi likh raha, tujhe sona bhi hoga 😴💤… Good night meri Vedi 🌙✨.</p>
+      </div>
+      <div class="row" style="margin-top:6px">
+        <a id="shareBtn" class="btn" href="#">Share on WhatsApp</a>
+        <button class="btn secondary" id="replay">Replay confetti</button>
+      </div>
+    </section>
+
+    <footer>
+      Made with ❤️ by Dhruv ·
+      <div class="strip" aria-label="memories">
+  <div class="ph">
+    <img src="hand.jpg" alt="Our hands" 
+         style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+  </div>
+  <div class="ph">
+    <img src="together.jpg" alt="Us together" 
+         style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+  </div>
+  <div class="ph"></div> <!-- optional placeholder -->
+</div>
+
+    </footer>
+  </div>
+
+  <audio id="song" preload="auto">
+    <source src="data:audio/mp3;base64,//uQZAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcAAAACAAACcAAACcGFuZGEgZHVtbXkgc2lsZW5jZSBhdWRpbyBmaWxsZXI=" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    // ===== Helper: next midnight =====
+    function nextMidnight(){
+      const now = new Date();
+      const target = new Date(now);
+      target.setHours(24,0,0,0);
+      return target;
+    }
+
+    // ===== Countdown =====
+    const dEl = document.getElementById('d');
+    const hEl = document.getElementById('h');
+    const mEl = document.getElementById('m');
+    const sEl = document.getElementById('s');
+    const countdownCard = document.getElementById('countdownCard');
+    const reveal = document.getElementById('reveal');
+    const typeEl = document.getElementById('type');
+
+    let targetTime = nextMidnight();
+    let revealed = false;
+
+    function pad(n){return n.toString().padStart(2,'0');}
+
+    function tick(){
+      const now = new Date();
+      const diff = targetTime - now;
+      if(diff <= 0){
+        if(!revealed){ doReveal(); }
+        dEl.textContent = '00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00';
+        return;
+      }
+      const sec = Math.floor(diff/1000)%60;
+      const min = Math.floor(diff/1000/60)%60;
+      const hr  = Math.floor(diff/1000/60/60)%24;
+      const day = Math.floor(diff/1000/60/60/24);
+      dEl.textContent = pad(day);
+      hEl.textContent = pad(hr);
+      mEl.textContent = pad(min);
+      sEl.textContent = pad(sec);
+    }
+    setInterval(tick, 250);
+    tick();
+
+    // ===== Typewriter =====
+    const lines = [
+      'Happy 1st Anniversary, Naivedi! ✨',
+      'I love you — today, tomorrow, always. 💞',
+      '— Yours, Dhruv'
+    ];
+    
+    async function typeLines(){
+      typeEl.textContent = '';
+      for(const line of lines){
+        await typeLine(line); await pause(700);
+      }
+    }
+    function pause(ms){ return new Promise(r=>setTimeout(r,ms)); }
+    async function typeLine(text){
+      const span = document.createElement('div');
+      reveal.appendChild(span);
+      let out = '';
+      for(const ch of text){ out += ch; span.textContent = out; await pause(30 + Math.random()*40); }
+      typeEl.appendChild(span);
+    }
+
+    // ===== Hearts generator =====
+    const hearts = document.querySelector('.hearts');
+    function makeHeart(){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.animationDuration = (6 + Math.random()*6)+'s';
+      h.style.transform = 'translateY(0) rotate(45deg) scale('+(0.6+Math.random()*1.2)+')';
+      hearts.appendChild(h);
+      setTimeout(()=>h.remove(), 11000);
+    }
+    setInterval(makeHeart, 700);
+
+    // ===== Confetti =====
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W,H,particles=[],rafId;
+    function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+    function confettiBurst(){
+      particles = [];
+      const colors = ['#ff5fa2','#ffd166','#4ef3c3','#9b8cff','#fff387'];
+      for(let i=0;i<180;i++){
+        particles.push({
+          x: W/2, y: H*0.25,
+          vx: (Math.random()*2-1)* (3 + Math.random()*3),
+          vy: (Math.random()*-2 - 4) * (0.8 + Math.random()*0.6),
+          g: 0.15 + Math.random()*0.2,
+          s: 4+Math.random()*4,
+          r: Math.random()*Math.PI,
+          vr: (Math.random()*2-1)*0.1,
+          c: colors[Math.floor(Math.random()*colors.length)]
+        });
+      }
+      cancelAnimationFrame(rafId);
+      loop();
+      setTimeout(()=>{ cancelAnimationFrame(rafId); ctx.clearRect(0,0,W,H); }, 4000);
+    }
+    function loop(){
+      rafId = requestAnimationFrame(loop);
+      ctx.clearRect(0,0,W,H);
+      particles.forEach(p=>{
+        p.vy += p.g; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+        ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r);
+        ctx.fillStyle = p.c; ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s);
+        ctx.restore();
+      });
+    }
+
+    // ===== Audio =====
+    const song = document.getElementById('song');
+    const muteBtn = document.getElementById('muteBtn');
+    let soundOn = false;
+    muteBtn.addEventListener('click',()=>{
+      soundOn = !soundOn; muteBtn.setAttribute('aria-pressed', String(soundOn));
+      muteBtn.textContent = soundOn ? 'Sound off' : 'Sound on';
+      if(soundOn){ song.play().catch(()=>{}); } else { song.pause(); song.currentTime=0; }
+    });
+
+    // ===== Reveal controls =====
+    function doReveal(){
+      revealed = true;
+      countdownCard.style.display = 'none';
+      reveal.style.display = 'flex';
+      confettiBurst();
+      typeLines();
+      if(soundOn){ song.play().catch(()=>{}); }
+    }
+
+    // document.getElementById('testReveal').addEventListener('click', doReveal);
+    document.getElementById('replay').addEventListener('click', confettiBurst);
+
+    // ===== WhatsApp share =====
+    document.getElementById('shareBtn').addEventListener('click', e=>{
+      e.preventDefault();
+      const text = "Happy 1st Anniversary, Naivedi! 💖\nMade this for you: (open website)";
+      const url = "https://wa.me/?text="+encodeURIComponent(text);
+      window.open(url,'_blank');
+    });
+  </script>
+</body>
+</html>
